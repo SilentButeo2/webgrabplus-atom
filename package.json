@@ -1,10 +1,9 @@
 {
   "name": "webgrabplus-atom",
   "main": "./lib/webgrabplus-atom",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "WebGrab+Plus support package",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "webgrabplus:siteinicleanup"
   },
@@ -13,6 +12,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
