@@ -8,7 +8,7 @@
   "activationCommands": {
     "atom-workspace": "webgrabplus:siteinicleanup"
   },
-  "repository": "https://github.com/atom/webgrabplus-atom",
+  "repository": "https://github.com/SilentButeo2/webgrabplus-atom.git",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
