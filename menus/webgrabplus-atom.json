@@ -1,0 +1,34 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "WebGrab+Plus siteini cleanup",
+        "command": "webgrabplus:siteinicleanup"
+      },
+      {
+        "label": "WebGrab+Plus config adjust",
+        "command": "webgrabplus:confingadjust"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "WebGrab+Plus",
+          "submenu": [
+            {
+              "label": "siteini cleanup",
+              "command": "webgrabplus:siteinicleanup"
+            },
+            {
+              "label": "config adjust",
+              "command": "webgrabplus:confingadjust"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
