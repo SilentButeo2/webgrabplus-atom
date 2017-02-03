@@ -1,6 +1,6 @@
 {
   "atom-workspace": {
-    "alt-q": "webgrabplus:siteinicleanup",
-    "alt-c": "webgrabplus:confingadjust"
+    "alt-q": "webgrabplus-atom:siteinicleanup",
+    "alt-c": "webgrabplus-atom:confingadjust"
   }
 }

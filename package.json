@@ -5,12 +5,31 @@
   "description": "WebGrab+Plus support package",
   "keywords": [],
   "activationCommands": {
-    "atom-workspace": "webgrabplus:siteinicleanup"
   },
   "repository": "https://github.com/SilentButeo2/webgrabplus-atom.git",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {}
+  "providedServices": {
+    "builder": {
+      "description": "Runs WebGrab+Plus config files (siteini's)",
+      "versions": {
+        "2.0.0": "buildprovider"
+      }
+    }
+  },
+  "package-deps": [
+    "build"
+  ],
+  "dependencies": {
+    "atom-package-deps": "^4.3.1"
+  },
+  "configSchema": {
+    "path": {
+          "default": "",
+          "type": "string",
+          "description": "The folder to find WebGrab+Plus.exe"
+    }
+  }
 }

@@ -3,11 +3,11 @@
     "atom-text-editor": [
       {
         "label": "WebGrab+Plus siteini cleanup",
-        "command": "webgrabplus:siteinicleanup"
+        "command": "webgrabplus-atom:siteinicleanup"
       },
       {
         "label": "WebGrab+Plus config adjust",
-        "command": "webgrabplus:confingadjust"
+        "command": "webgrabplus-atom:confingadjust"
       }
     ]
   },
@@ -20,11 +20,11 @@
           "submenu": [
             {
               "label": "siteini cleanup",
-              "command": "webgrabplus:siteinicleanup"
+              "command": "webgrabplus-atom:siteinicleanup"
             },
             {
               "label": "config adjust",
-              "command": "webgrabplus:confingadjust"
+              "command": "webgrabplus-atom:confingadjust"
             }
           ]
         }
