@@ -1,11 +1,10 @@
 {
   "name": "webgrabplus-atom",
   "main": "./lib/webgrabplus-atom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WebGrab+Plus support package",
   "keywords": [],
-  "activationCommands": {
-  },
+  "activationCommands": {},
   "repository": "https://github.com/SilentButeo2/webgrabplus-atom.git",
   "license": "MIT",
   "engines": {
@@ -27,9 +26,9 @@
   },
   "configSchema": {
     "path": {
-          "default": "",
-          "type": "string",
-          "description": "The folder to find WebGrab+Plus.exe"
+      "default": "",
+      "type": "string",
+      "description": "The folder to find WebGrab+Plus.exe"
     }
   }
 }
