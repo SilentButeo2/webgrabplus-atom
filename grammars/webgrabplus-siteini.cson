@@ -1,5 +1,5 @@
-'scopeName': 'text.webgrabplus-atom'
-'name': 'WG++'
+'scopeName': 'source.webgrabplus-siteini'
+'name': 'WG++ siteini'
 'fileTypes': ['ini']
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
 'patterns': [
@@ -25,13 +25,6 @@
   {
     #elements (in single quotes)
     'match': '(\'(url_index|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|showsplit|date|start|stop|duration|title|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|index_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_)?(title|titleoriginal|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating|ratingicon|category|productiondate|starrating|episode|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_site_id|config_site_channel|config_xmltv_id|config_display_name|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_)?temp_[1-9])\')'
-    'captures':
-      '2':
-        'name': 'storage.type.siteini'
-  }
-  {
-    #elements (in double quotes)
-    'match': '("(url_index|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|showsplit|date|start|stop|duration|title|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|index_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_)?(title|titleoriginal|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating|ratingicon|category|productiondate|starrating|episode|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_site_id|config_site_channel|config_xmltv_id|config_display_name|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_)?temp_[1-9])")'
     'captures':
       '2':
         'name': 'storage.type.siteini'
