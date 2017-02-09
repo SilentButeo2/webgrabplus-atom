@@ -1,7 +1,7 @@
 {
   "name": "webgrabplus-atom",
   "main": "./lib/webgrabplus-atom",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "WebGrab+Plus support package",
   "keywords": [],
   "activationCommands": {},
