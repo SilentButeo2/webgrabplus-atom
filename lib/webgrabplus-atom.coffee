@@ -1,10 +1,9 @@
 WebgrabplusAtomView = require './webgrabplus-atom-view'
-{CompositeDisposable} = require 'atom'
-{TextBuffer} = require 'atom'
-
-
+{ CompositeDisposable } = require 'atom'
+{ TextBuffer } = require 'atom'
+{ File } = require 'atom'
 { install } = require 'atom-package-deps'
-{ spawnSync } = require 'child_process'
+{ execSync } = require 'child_process'
 
 os = require 'os'
 
@@ -15,6 +14,11 @@ module.exports = WebgrabplusAtom =
   webgrabplusAtomView: null
   modalPanel: null
   subscriptions: null
+  buildPathwg: false
+  buildPathmono: false
+  bMonoUsed: false
+  pathwg: ''
+  pathmono: ''
 
   activate: (state) ->
     @webgrabplusAtomView = new WebgrabplusAtomView(state.webgrabplusAtomViewState)
@@ -26,11 +30,15 @@ module.exports = WebgrabplusAtom =
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'webgrabplus-atom:siteinicleanup': => @siteinicleanup()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'webgrabplus-atom:confingadjust': => @confingadjust()
+    # Register our commands
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'webgrabplus-atom:tidy-siteini': => @tidy_siteini()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'webgrabplus-atom:confingadjust': => @confingadjust()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'webgrabplus-atom:selectPathWg': => @selectPathWg()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'webgrabplus-atom:selectPathMono': => @selectPathMono()
+    #@subscriptions.add atom.commands.add 'atom-text-editor', 'webgrabplus-atom:run': => @run()
 
-    console.log 'WebGrab+Plus path = ' + atom.config.get('webgrabplus-atom.path')
+    console.log 'path WebGrab+Plus: ' + atom.config.get('webgrabplus-atom.path-wg')
+    console.log 'path Mono        : ' + atom.config.get('webgrabplus-atom.path-mono')
 
     console.log 'webgrabplus-atom activated'
 
@@ -42,7 +50,121 @@ module.exports = WebgrabplusAtom =
   serialize: ->
     webgrabplusAtomViewState: @webgrabplusAtomView.serialize()
 
-  siteinicleanup: ->
+  run: ->
+    console.log 'os.platform() = ' + os.platform()
+    if not @buildPathwg
+      atom.notifications.addError('WebGrab+Plus.exe not found', {detail: 'Check the package settings.\nYou can set it with\nPackage > WebGrab+Plus > Set WebGrab+Plus.exe'})
+    else if 'win32' is not os.platform() and not @buildPathmono
+      atom.notifications.addError('mono not found', {detail: 'Check the package settings.\nYou can set it with\nPackage > WebGrab+Plus > Set mono'})
+    console.log 'Webgrabplusatom - run!'
+
+  confingadjust: ->
+    console.log 'Webgrabplusatom - confingadjust'
+
+  selectPathWg: ->
+    { remote } = require 'electron'
+    files = remote.dialog.showOpenDialog(remote.getCurrentWindow(), {properties:['openFile'], filters:[{name: 'Executable', extensions: ['exe']}]})
+    if files and files.length
+      atom.config.set('webgrabplus-atom.path-wg', files[0])
+
+    if atom.config.get('webgrabplus-atom.path-wg') isnt @pathwg
+      notification = atom.notifications.addWarning('Path changed, you need to restart Atom',
+       {
+         dismissable: true,
+         detail: 'The path to WebGrab+Plus.exe has been changed. A restart of Atom is needed, for the changes to take effect',
+         buttons: [text: 'restart', onDidClick: ->
+           atom.restartApplication()
+           notification.dismiss()
+         ]
+        })
+
+  selectPathMono: ->
+    { remote } = require 'electron'
+    files = remote.dialog.showOpenDialog(remote.getCurrentWindow(), {properties:['openFile']})
+    if files and files.length
+      atom.config.set('webgrabplus-atom.path-mono', files[0])
+
+    if atom.config.get('webgrabplus-atom.path-mono') isnt @pathmono
+      notification = atom.notifications.addWarning('Path changed, you need to restart Atom',
+       {
+         dismissable: true,
+         detail: 'The path to mono has been changed. A restart of Atom is needed, for the changes to take effect',
+         buttons: [text: 'restart', onDidClick: ->
+           atom.restartApplication()
+           notification.dismiss()
+         ]
+        })
+
+  buildprovider: ->
+    # save the paths that are used by the build package.
+    # this is later needed to see if the path(s) have changed
+    @pathwg = atom.config.get('webgrabplus-atom.path-wg')
+    @pathmono = atom.config.get('webgrabplus-atom.path-mono')
+
+    fwg = new File(@pathwg)
+    if fwg.existsSync()
+      @buildPathwg = true
+
+    if 'win32' is not os.platform()
+      console.log 'Cheking if mono is found'
+      if not (@pathmono?.length)
+         @bMonoUsed = true
+    else
+      @bMonoUsed = false
+
+    if not @bMonoUsed
+      console.log 'Mono will not be used'
+    else
+      if not (@pathmono?.length)
+        @pathmono = 'mono'
+        atom.config.set('webgrabplus-atom.path-mono', @pathmono)
+      try
+        stdout = execSync @pathmono + ' --version'
+        @buildPathmono = true
+        console.log 'Mono OK'
+      catch error
+        console.log 'Mono NOK'
+
+    # return no build provider, if there was an issue with the env.
+    if not (@buildPathwg and (not @bMonoUsed or @buildPathmono))
+      return null
+
+    class WebGrabPlusProvider
+      constructor: (@cwd) ->
+
+      getNiceName: ->
+        'WebGrab+Plus'
+
+      isEligible: ->
+        return true
+
+      settings: ->
+        console.log 'calling the WebGrabPlusProvider.settings'
+        mono = atom.config.get('webgrabplus-atom.path-mono')
+        wg = atom.config.get('webgrabplus-atom.path-wg')
+
+        if not (mono?.length)
+            return [
+              {
+                name: 'WebGrab+Plus',
+                exec: wg,
+                args: [ '{FILE_ACTIVE_PATH}' ],
+                cwd: '{FILE_ACTIVE_PATH}',
+                sh: false,
+              }
+            ]
+        else
+          return [
+            {
+              name: 'WebGrab+Plus',
+              exec: mono
+              args: [ wg, '{FILE_ACTIVE_PATH}' ]
+              cwd: '{FILE_ACTIVE_PATH}',
+              sh: false,
+            }
+          ]
+
+  tidy_siteini: ->
     console.log 'Webgrabplusatom - siteinicleanup'
     if editor = atom.workspace.getActiveTextEditor()
       txtBufOld = new TextBuffer(editor.getText())
@@ -116,39 +238,6 @@ module.exports = WebgrabplusAtom =
       editor.setText(txtBufNew.getText())
       console.log 'done'
 
-  run: ->
-    console.log 'Webgrabplusatom - run!'
-
-  confingadjust: ->
-    console.log 'Webgrabplusatom - confingadjust'
-
-  buildprovider: ->
-    console.log 'calling the WebGrabPlusProvider'
-    class WebGrabPlusProvider
-      constructor: (@cwd) ->
-
-      getNiceName: ->
-        console.log 'calling the WebGrabPlusProvider.getNiceName'
-        'WebGrab+Plus'
-
-      isEligible: ->
-        console.log 'calling the WebGrabPlusProvider.isEligible'
-        true
-
-      settings: ->
-        console.log 'calling the WebGrabPlusProvider.settings'
-        [
-          {
-            name: 'WebGrab+Plus',
-            exec: atom.config.get('webgrabplus-atom.path'),
-            args: [ '{FILE_ACTIVE_PATH}' ],
-            cwd: '{FILE_ACTIVE_PATH}',
-            sh: false,
-            keymap: 'alt-w',
-            atomCommandName: 'webgrabplus-atom:run'
-            #errorMatch: ['(?<file>([^:]+)):(?<line>\\d+):(?<col>\\d+): (?<message>.+)']
-          }
-        ]
 
 ###
 

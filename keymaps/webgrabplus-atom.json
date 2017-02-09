@@ -1,6 +1,6 @@
 {
-  "atom-workspace": {
-    "alt-q": "webgrabplus-atom:siteinicleanup",
-    "alt-c": "webgrabplus-atom:confingadjust"
+  "atom-text-editor": {
+    "ctrl-alt-t": "webgrabplus-atom:tidy-siteini",
+    "ctrl-alt-c": "webgrabplus-atom:confingadjust"
   }
 }

@@ -25,10 +25,17 @@
     "atom-package-deps": "^4.3.1"
   },
   "configSchema": {
-    "path": {
+    "path-wg": {
       "default": "",
       "type": "string",
-      "description": "The folder to find WebGrab+Plus.exe"
+      "title": "Setting WebGrab+Plus.exe",
+      "description": "The path to WebGrab+Plus.exe"
+    },
+    "path-mono": {
+      "default": "",
+      "type": "string",
+      "title": "Setting mono",
+      "description": "The path to mono. On windows this can be left empty."
     }
   }
 }

@@ -1,13 +1,15 @@
 {
   "context-menu": {
-    "atom-text-editor": [
+    "atom-text-editor[data-grammar='source webgrabplus-siteini']": [
       {
-        "label": "WebGrab+Plus siteini cleanup",
-        "command": "webgrabplus-atom:siteinicleanup"
-      },
-      {
-        "label": "WebGrab+Plus config adjust",
-        "command": "webgrabplus-atom:confingadjust"
+        "label": "WebGrab+Plus",
+        "submenu": [
+          {"label": "SiteIni cleanup" ,"command": "webgrabplus-atom:tidy-siteini"},
+          {"label": "Config adjust"   ,"command": "webgrabplus-atom:confingadjust"},
+          {"type": "separator"},
+          {"label": "Select WebGrab+Plus.exe","command": "webgrabplus-atom:selectPathWg"},
+          {"label": "Select mono","command": "webgrabplus-atom:selectPathMono"}
+       ]
       }
     ]
   },
@@ -18,14 +20,8 @@
         {
           "label": "WebGrab+Plus",
           "submenu": [
-            {
-              "label": "siteini cleanup",
-              "command": "webgrabplus-atom:siteinicleanup"
-            },
-            {
-              "label": "config adjust",
-              "command": "webgrabplus-atom:confingadjust"
-            }
+            {"label": "Select WebGrab+Plus.exe","command": "webgrabplus-atom:selectPathWg"},
+            {"label": "Select mono","command": "webgrabplus-atom:selectPathMono"}
           ]
         }
       ]
