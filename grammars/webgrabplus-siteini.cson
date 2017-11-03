@@ -85,6 +85,13 @@
         'name': 'entity.name.function.siteini'
   }
   {
+    #specials url with preload
+    'match': '(preload)\\s*=\\s*".+?"\\s*\\)\\s*\\|'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
     # specials within ( =param)
     'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link)\\s*='
     'captures':
