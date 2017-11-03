@@ -132,7 +132,7 @@
   }
   {
     # specials format=
-    'match': '(format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)[\\s+\\)]'
+    'match': '(format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -141,7 +141,7 @@
   }
   {
     # specials (urldate|subpage).format
-    'match': '\\.(format)\\s*\{\\s*(daycounter|daynumber|(weekday)?number|weekdayname|datestring|letter|list)[\\|\\(]'
+    'match': '\\.(format)\\s*\{\\s*(daycounter|daynumber|(weekday)?number|weekdayname|datestring|letter|list)'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -150,7 +150,7 @@
   }
   {
     # specials include/exlcude(block)=
-    'match': '(includeblock|excludeblock|include|exclude)\\s*=\\s*(\\d+|\\d+/\\d+|first|last|".+?")(\\d+)?[\\s+\\)]'
+    'match': '(includeblock|excludeblock|include|exclude)\\s*=\\s*(\\d+|\\d+/\\d+|first|last|".+?")(\\d+)?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -168,7 +168,7 @@
   }
   {
     # specials scope= as argument
-    'match': '(scope)\\s*=\\s*(urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)[\\s+\\)]'
+    'match': '(scope)\\s*=\\s*(urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -194,4 +194,5 @@
         'name': 'entity.name.tag.siteini'
   }
 ]
+
 
