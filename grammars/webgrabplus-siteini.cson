@@ -100,10 +100,12 @@
   }
   {
     # specials within ()
-    'match': '(removeduplicates|keekfirst|keeplast)'
+    'match': '(removeduplicates|keekfirst|keeplast)=*(name(,\\d+)?|title(,\\d+)?|equal(,\\d+)?)?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
   }
   {
     # specials xmltv attributes
@@ -114,7 +116,7 @@
   }
   {
     # specials style=
-    'match': '[\\s+\\(](style)=(sentence|name|upper|lower|regex|urlencode|urldecode|unidecode|uniencode|htmlencodespecialchar|htmldecodespecialchar|jsondecode|base64encode|base64decode|sha256encode|md5encode|roman2arabicnumeral)'
+    'match': '[\\s+\\(](style)=(sentence|name|upper|lower|regex|urlencode|urldecode|unidecode|uniencode|htmlencodespecialchar|htmldecodespecialchar|jsondecode|base64encode|base64decode(,decimal)?|sha256encode|md5encode|roman2arabicnumeral)'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -141,7 +143,7 @@
   }
   {
     # specials (urldate|subpage).format
-    'match': '\\.(format)\\s*\{\\s*(daycounter|daynumber|(weekday)?number|weekdayname|datestring|letter|list)'
+    'match': '\\.(format)\\s*\{\\s*(daycounter|date(string|number)|weekday(number|name)|letter|list)'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -149,8 +151,19 @@
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials include/exlcude(block)=
-    'match': '(includeblock|excludeblock|include|exclude)\\s*=\\s*(\\d+|\\d+/\\d+|first|last|".+?")(\\d+)?'
+    # specials include/exlcude=
+    'match': "(include|exclude)\\s*=\\s*(\\d+|first|last|\".+?\")(\\d+)?"
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials (include/exlcude)block=
+    'match': "(includeblock|excludeblock)\\s*=\\s*((\\d+|'.+?')(/\\d+|/'.+?')?|\".+?\")"
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
