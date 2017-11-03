@@ -132,7 +132,7 @@
   }
   {
     # specials format=
-    'match': '[\\s+\\(](format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)'
+    'match': '(format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)[\\s+\\)]'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
