@@ -17,14 +17,14 @@
   }
   {
     #elements
-    'match': '^\\s*(url_index|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|showsplit|date|start|stop|duration|title|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|index_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_)?(title|titleoriginal|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating|ratingicon|category|productiondate|starrating|episode|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_site_id|config_site_channel|config_xmltv_id|config_display_name|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_)?temp_[1-9])'
+    'match': '^\\s*(url_index|url_preload|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|url_primarysearch|url_mdb(_p[1-8])?|showsplit|date|start|stop|duration|(mdb_)?title(original)?|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|(index|mdb)_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(numlist|titlelist)?|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_id|site_channel|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|episode_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))'
     'captures':
       '1':
         'name': 'storage.type.siteini'
   }
   {
     #elements (in single quotes)
-    'match': '(\'(url_index|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|showsplit|date|start|stop|duration|title|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|index_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_)?(title|titleoriginal|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating|ratingicon|category|productiondate|starrating|episode|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_site_id|config_site_channel|config_xmltv_id|config_display_name|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_)?temp_[1-9])\')'
+    'match': '(\'(url_index|url_preload|index_urlshow|index_urlsubdetail|site|urldate|subpage|urlshow|urlsubdetail|url_primarysearch|url_mdb(_p[1-8])?|showsplit|date|start|stop|duration|(mdb_)?title(original)?|(index_)?temp_[1-9]|site_channel|site_id|sort_by|index_showsplit|index_date|index_start|index_stop|index_duration|index_title|(index|mdb)_variable_element|index_site_channel|index_site_id|index_sort_by|detail_urlshow|detail_urlsubdetail|detail_showsplit|detail_date|detail_start|detail_stop|detail_duration|detail_site_channel|detail_site_id|detail_sort_by|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitle|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(numlist|titlelist)?|subtitles|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_id|site_channel|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|episode_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))\')'
     'captures':
       '2':
         'name': 'storage.type.siteini'
@@ -49,50 +49,163 @@
   }
   {
     #modifier of .headers
-    'match': '[\\{\\|](customheader|accept|referer|contenttype)\\s*='
+    'match': '[\\{\\|](method|customheader|accept|referer|contenttype|postdata|host|credentials|allowautoredirect|expect)\\s*=(POST|GET|POST_BACK|SOAP)?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
   }
   {
     #modifier of .site (with =)
-    'match': '[\\{\\|](subtitlestype|loadcookie|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|titlematchfactor)\\s*='
+    'match': '[\\{\\|](subtitlestype|loadcookie|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|(title)?matchfactor|firstday|firstshow|retry|skip|langoverrule|mdbinitype|searchsite)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
   }
   {
     #modifier of .site (without =)
-    'match': '[\\{\\|](allowlastpageoverflow|keepindexpage)'
+    'match': '[\\{\\|](allowlastdayoverflow|keepindexpage|nopageoverlaps|keeptabs)'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
   }
   {
     #other 'functions'
-    'match': '\\.(headers|format)\\s*'
+    'match': '\\.(headers)\\s*'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
   }
   {
+    #specials url
+    'match': '\\s*\{\\s*(url)\\s*[\\(\\|]'
+    'captures':
+      '1':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    #specials url with preload
+    'match': '(preload)\\s*=\\s*".+?"\\s*\\)\\s*\\|'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
     # specials within ( =param)
-    'match': '(separator|style|format|step|count|type|pattern|include|exclude|target|tags)\\s*='
+    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
   }
   {
     # specials within ()
-    'match': '(removeduplicates)'
+    'match': '(removeduplicates|keekfirst|keeplast)=*(name(,\\d+)?|title(,\\d+)?|equal(,\\d+)?)?'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials xmltv attributes
+    'match': '\\((lang|system|role|src|width|height|start|channel)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
   }
-# currently Atom only support folding when groups are intended
-#  {
-#    'begin': 'scope\\.range'
-#    'end': '.*?end_scope'
-#    'name': 'meta.fucntion.siteini'
-#  }
+  {
+    # specials style=
+    'match': '[\\s+\\(](style)=(sentence|name|upper|lower|regex|urlencode|urldecode|unidecode|uniencode|htmlencodespecialchar|htmldecodespecialchar|jsondecode|base64encode|base64decode(,decimal)?|sha256encode|md5encode|roman2arabicnumeral)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials type=
+    'match': '[\\s+\\(](type)=(string|char|word|sentence|paragraph|element|regex|run)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials format=
+    'match': '(format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials (urldate|subpage).format
+    'match': '\\.(format)\\s*\{\\s*(daycounter|date(string|number)|weekday(number|name)|letter|list)'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials include/exlcude=
+    'match': "(include|exclude)\\s*=\\s*(\\d+|first|last|\".+?\")(\\d+)?"
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials (include/exlcude)block=
+    'match': "(includeblock|excludeblock)\\s*=\\s*((\\d+|'.+?')(/\\d+|/'.+?')?|\".+?\")"
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials pattern(episodesystem)=
+    'match': "('(S|St|E|Et|P|Pt)[01]')"
+    'captures':
+      '1':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials scope= as argument
+    'match': '(scope)\\s*=\\s*(urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    # specials scope.range
+    'match': '(scope\\.range)\\s*\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\}'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials end_scope or end_scope.range
+    'match': '(end_scope(\\.range)?)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+  }
 ]
+
+
