@@ -108,14 +108,14 @@
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials xmltv attributes
+    # xmltv attributes
     'match': '\\((lang|system|role|src|width|height|start|channel)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
   }
   {
-    # specials style=
+    # style=
     'match': '[\\s+\\(](style)=(sentence|name|upper|lower|regex|urlencode|urldecode|unidecode|uniencode|htmlencodespecialchar|htmldecodespecialchar|jsondecode|base64encode|base64decode(,decimal)?|sha256encode|md5encode|roman2arabicnumeral)'
     'captures':
       '1':
@@ -124,7 +124,7 @@
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials type=
+    # type=
     'match': '[\\s+\\(](type)=(string|char|word|sentence|paragraph|element|regex|run)'
     'captures':
       '1':
@@ -151,7 +151,7 @@
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials include/exlcude=
+    # include/exlcude=
     'match': "(include|exclude)\\s*=\\s*(\\d+|first|last|\".+?\")(\\d+)?"
     'captures':
       '1':
@@ -162,7 +162,7 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # specials (include/exlcude)block=
+    # (include/exlcude)block=
     'match': "(includeblock|excludeblock)\\s*=\\s*((\\d+|'.+?')(/\\d+|/'.+?')?|\".+?\")"
     'captures':
       '1':
@@ -173,14 +173,14 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # specials pattern(episodesystem)=
+    # pattern(episodesystem)=
     'match': "('(S|St|E|Et|P|Pt)[01]')"
     'captures':
       '1':
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials scope= as argument
+    # scope= as argument
     'match': '(scope)\\s*=\\s*(urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)'
     'captures':
       '1':
@@ -189,7 +189,7 @@
         'name': 'entity.name.function.siteini'
   }
   {
-    # specials scope.range
+    # scope.range
     'match': '(scope\\.range)\\s*\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\}'
     'captures':
       '1':
@@ -200,10 +200,26 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # specials end_scope or end_scope.range
+    # end_scope or end_scope.range
     'match': '(end_scope(\\.range)?)'
     'captures':
       '1':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # debug as argument
+    'match': '(debug)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    # debug stand alone
+    'match': '\\.(modify)(\\s*\{\\s*\\((debug)\\))'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '3':
         'name': 'entity.name.tag.siteini'
   }
 ]
