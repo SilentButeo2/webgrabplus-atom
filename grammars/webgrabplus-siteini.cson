@@ -190,7 +190,7 @@
   }
   {
     # scope.range
-    'match': '(scope\\.range)\\s*\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\}'
+    'match': '(scope\\.range)\\s*\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist|primarysearch|match|getelements)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\}'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -260,3 +260,4 @@
       'name': 'entity.name.function.siteini'
 }
 ]
+
