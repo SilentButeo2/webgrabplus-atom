@@ -1,4 +1,14 @@
-'scopeName': 'source.webgrabplus-siteini'
+{
+# url index elements
+'match': '(\\|)(urldate|channel|subpage|\'title\'|\'credits\'|\'productiondate\')(\\|)'
+'captures':
+  '1':
+    'name': 'entity.name.tag.siteini'
+  '2':
+    'name': 'entity.name.type.siteini'
+  '3':
+    'name': 'entity.name.tag.siteini'
+}'scopeName': 'source.webgrabplus-siteini'
 'name': 'WG++ siteini'
 'fileTypes': ['ini']
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
@@ -258,5 +268,16 @@
       'name': 'entity.name.function.siteini'
     '4':
       'name': 'entity.name.function.siteini'
+}
+{
+# url index elements
+'match': '(\\|)(urldate|channel|subpage|\'title\'|\'credits\'|\'productiondate\')(\\|)'
+'captures':
+  '1':
+    'name': 'entity.name.tag.siteini'
+  '2':
+    'name': 'entity.name.type.siteini'
+  '3':
+    'name': 'entity.name.tag.siteini'
 }
 ]
