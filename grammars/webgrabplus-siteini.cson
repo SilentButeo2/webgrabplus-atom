@@ -99,9 +99,21 @@
   }
   {
     #specials url with urlencode(mdb)
-    'match': '\\((urlencode)=\\s*\\d(,\\d)?(,\\d)?(,\\d)?\\s*\\)\\s*\\|'
+    'match': '\\((urlencode)=\\s*(\\d),?(\\d)?,?(\\d)?,?(\\d)?,?(\\d)?,?(\\d)?\\s*\\)\\s*\\|'
     'captures':
       '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'entity.name.tag.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
+      '4':
+        'name': 'entity.name.tag.siteini'
+      '5':
+        'name': 'entity.name.tag.siteini'
+      '6':
+        'name': 'entity.name.tag.siteini'
+      '7':
         'name': 'entity.name.tag.siteini'
     }
   {
