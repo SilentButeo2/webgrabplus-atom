@@ -105,8 +105,8 @@
         'name': 'entity.name.tag.siteini'
     }
   {
-    # specials within ( =param)
-    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link|timezone)'
+    # specials within (=param)
+    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link|timezone)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -156,12 +156,14 @@
   }
   {
     # specials format=
-    'match': '(format)=(chartodec|(utc)?date(,vba|,unix|,java|,ticks)?|(utc)?time(span,days|span,hours)?|productiondate|F\\d+|D\\d+)'
+    'match': '(format)=(chartodec|productiondate|utcdate|utctime|timespan|date|time|[FD]),?(vba|unix|java|ticks|days|hours|\\d+)?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
       '2':
         'name': 'entity.name.function.siteini'
+      '3':
+        'name': 'entity.name.tag.siteini'
   }
   {
     # specials (urldate|subpage).format
@@ -183,15 +185,15 @@
       '3':
         'name': 'entity.name.type.siteini'
       '4':
-        'name': 'entity.name.type.siteinitag.siteini'
+        'name': 'entity.name.function.siteini'
       '5':
-        'name': 'storage.type.siteini'
+        'name': 'entity.name.type.siteini'
       '6':
         'name': 'entity.name.function.siteini'
       '7':
         'name': 'entity.name.type.siteini'
       '8':
-        'name': 'entity.name.tag.siteini'
+        'name': 'entity.name.function.siteini'
   }
   {
     # include/exlcude=x/firstx/lastx
@@ -215,15 +217,15 @@
       '3':
         'name': 'entity.name.type.siteini'
       '4':
-        'name': 'entity.name.type.siteinitag.siteini'
+        'name': 'entity.name.function.siteini'
       '5':
-        'name': 'storage.type.siteini'
+        'name': 'entity.name.type.siteini'
       '6':
         'name': 'entity.name.function.siteini'
       '7':
         'name': 'entity.name.type.siteini'
       '8':
-        'name': 'entity.name.tag.siteini'
+        'name': 'entity.name.function.siteini'
   }
   {
     # (include/exlcude)block=x/y or 'element/'element' or combination of both
@@ -258,7 +260,7 @@
   }
   {
     # scope.range
-    'match': '^\\s*(scope\\.range)\\s*\\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist|primarysearch|match|getelements|postback)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\\}'
+    'match': '^\\s*(scope\\.range)\\s+\\{\\s*\\((urlindex|datelogo|splitindex|indexshowdetails|showdetails|showsubdetails|channellist|primarysearch|match|getelements|postback)\\s*\\)\\s*\\|\\s*(end|\\d+)\\s*\\}'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -342,15 +344,15 @@
         '3':
           'name': 'entity.name.type.siteini'
         '4':
-          'name': 'entity.name.type.siteinitag.siteini'
+          'name': 'entity.name.function.siteini'
         '5':
-          'name': 'storage.type.siteini'
+          'name': 'entity.name.type.siteini'
         '6':
           'name': 'entity.name.function.siteini'
         '7':
           'name': 'entity.name.type.siteini'
         '8':
-          'name': 'entity.name.tag.siteini'
+          'name': 'entity.name.function.siteini'
     }
    {
      # mdb url index elements
@@ -382,4 +384,3 @@
            'name': 'entity.name.type.siteini'
      }
 ]
-
