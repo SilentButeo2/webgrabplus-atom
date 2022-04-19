@@ -92,7 +92,7 @@
   }
   {
     #specials url
-    'match': '\\s*\\{\\s*(url)'
+    'match': '\\s*\\{\\s*(url)\\|'
     'captures':
       '1':
         'name': 'entity.name.function.siteini'
