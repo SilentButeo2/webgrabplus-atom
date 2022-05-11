@@ -75,7 +75,7 @@
   }
   {
     #modifier of .site (with =)
-    'match': '[\\{\\|\\s](compression|subtitlestype|loadcookie|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|(title)?matchfactor|firstday|firstshow|grabengine|retry|skip|langoverrule|mdbinitype|searchsite|channel-delay|show-delay|index-delay|time-out)\\s*='
+    'match': '[\\{\\|\\s](compression|subtitlestype|loadcookie|episodenumberformat|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|(title)?matchfactor|firstday|firstshow|grabengine|retry|skip|langoverrule|mdbinitype|searchsite|channel-delay|show-delay|index-delay|time-out)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
