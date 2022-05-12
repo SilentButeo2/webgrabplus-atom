@@ -300,15 +300,6 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # debug alone
-    'match': '.(modify)\\s*\\{\\s*(?:\\(?\\s*(debug)\\s*\\)?)\\s*\\}'
-    'captures':
-      '1':
-        'name': 'entity.name.type.siteini'
-      '2':
-        'name': 'entity.name.tag.siteini'
-  }
-  {
     # if,loop ***space required after(not optional)
     'match': '^\\s*(if|loop)\\s+\\{\\('
     'captures':
