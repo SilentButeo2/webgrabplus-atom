@@ -31,7 +31,7 @@
   }
   {
     #modifier after modify
-    'match': '\\.(modify)\\s*\\{\\s*(set|calculate|clear|cleanup|substring|remove|addstart|addend|single|replace|select)'
+    'match': '\\.(modify)\\s*\\{\\s*(set|calculate|clear|cleanup|substring|remove|addstart|addend|replace|select)'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -40,7 +40,7 @@
   }
   {
     #modifier after scrub
-    'match': '\\.(scrub)\\s*\\{\\s*(\\||regex|multi|single|url)'
+    'match': '\\.?(scrub)?\\s*\\{\\s*(\\||regex|multi|single|url)(?:\\([^\\)]*\\))?\\|'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -49,9 +49,9 @@
   }
   {
     #modifier of .headers method=
-  'match': '(method)\\s*=(MULTIPART|GET|REST|SOAP|POST_BACK|POST)(\\()?(GET|POST)?(,)?(GET|POST)?(\\))?'
+    'match': '(method)\\s*=(MULTIPART|GET|REST|SOAP|POST_BACK|POST)(\\()?(GET|POST)?(,)?(GET|POST)?(\\))?'
     'captures':
-        '1':
+      '1':
         'name': 'entity.name.tag.siteini'
       '2':
         'name': 'entity.name.function.siteini'
@@ -115,10 +115,21 @@
     }
   {
     # specials within (=param)
-    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link|timezone)\\s*='
+    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|max|link|timezone)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials alloc
+    'match': '[\\s+\\(](alloc)\\s*=(site_id|xmltv_id|display_name),(site_id|xmltv_id|display_name)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'storage.type.siteini'
+      '3':
+        'name': 'storage.type.siteini'
   }
   {
     # specials removeduplicates
@@ -286,7 +297,7 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # debug as argument
+    # debug
     'match': '(debug)'
     'captures':
       '1':
@@ -301,7 +312,7 @@
       }
       {
       # else ***space required after(not optional)
-      'match': '^\\s*(else)\\s+\\('
+      'match': '^\\s*(else)\\s+'
       'captures':
         '1':
           'name': 'entity.name.tag.siteini'
