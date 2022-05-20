@@ -4,7 +4,31 @@
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
 'patterns': [
   {
-    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(Site|Revision|MinSWversion|Remarks\|encrypted)(.*?)$'
+    'match': '^\\*\\*\\s*([\\s_\\-]+)$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+  }
+  {
+    'match': '^\\*\\*\\s*(#####)\\s*([^\\(]*)\\(([^\\)]*)\\)$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '2':
+        'name': 'entity.name.tag.siteini'
+      '3':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(header_start|header_end|auto_xml_channel_start|auto_xml_channel_end)\\s*$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '2':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(Site|Revision|MinSWversion|Remarks|encrypted)(.*?)$'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
