@@ -4,11 +4,13 @@
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
 'patterns': [
   {
-    'match': '^(\\s*\\*[\\*\\s]*(@(Revision|MinSWversion|Remarks)\|\\$\\$encrypted).*?)$'
+    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(Site|Revision|MinSWversion|Remarks\|encrypted)(.*?)$'
     'captures':
       '1':
-        'name': 'comment.block'
+        'name': 'entity.name.type.siteini'
       '2':
+        'name': 'entity.name.function.siteini'
+      '3':
         'name': 'comment.block.documentation'
   }
   {
