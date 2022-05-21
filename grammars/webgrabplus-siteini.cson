@@ -66,7 +66,7 @@
   }
   {
     #modifier after scrub
-    'match': '\\.?(scrub)?\\s*\\{\\s*(\\||regex|multi|single|url)(?:\\([^\\)]*\\))?\\|'
+    'match': '\\.?(scrub)?\\s*\\{\\s*(\\||regex|multi|single|url)[\\(\\|]'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
