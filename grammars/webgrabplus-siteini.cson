@@ -4,7 +4,7 @@
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
 'patterns': [
   {
-    'match': '^(?:\uFEFF)?\\*\\*\\s*([\\s_\\-]+)$'
+    'match': '^\\*\\*\\s*([\\s_\\-]+)$'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
