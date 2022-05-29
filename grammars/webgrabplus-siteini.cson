@@ -4,11 +4,37 @@
 'firstLineMatch': '^\\s*\\*[\\s*\\*]*WebGrab\\+Plus'
 'patterns': [
   {
-    'match': '^(\\s*\\*[\\*\\s]*(@(Revision|MinSWversion|Remarks)\|\\$\\$encrypted).*?)$'
+    'match': '^\\*\\*\\s*([\\s_\\-]+)$'
     'captures':
       '1':
-        'name': 'comment.block'
+        'name': 'entity.name.type.siteini'
+  }
+  {
+    'match': '^\\*\\*\\s*(#####)\\s*([^\\(]*)\\(([^\\)]*)\\)$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
       '2':
+        'name': 'entity.name.tag.siteini'
+      '3':
+        'name': 'entity.name.function.siteini'
+  }
+  {
+    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(header_start|header_end|auto_xml_channel_start|auto_xml_channel_end)\\s*$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '2':
+        'name': 'entity.name.tag.siteini'
+  }
+  {
+    'match': '^\\s*\\*[\\*\\s]*(@|\\$\\$)(Site|Revision|MinSWversion|Remarks|encrypted)(.*?)$'
+    'captures':
+      '1':
+        'name': 'entity.name.type.siteini'
+      '2':
+        'name': 'entity.name.function.siteini'
+      '3':
         'name': 'comment.block.documentation'
   }
   {
@@ -31,7 +57,7 @@
   }
   {
     #modifier after modify
-    'match': '\\.(modify)\\s*\\{\\s*(set|calculate|clear|cleanup|substring|remove|addstart|addend|single|replace|select)'
+    'match': '\\.(modify)\\s*\\{\\s*(set|calculate|clear|cleanup|substring|remove|addstart|addend|replace|select)'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -40,7 +66,7 @@
   }
   {
     #modifier after scrub
-    'match': '\\.(scrub)\\s*\\{\\s*(\\||regex|multi|single)'
+    'match': '\\.?(scrub)?\\s*\\{\\s*(\\||regex|multi|single|url)(?!=)'
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
@@ -49,7 +75,7 @@
   }
   {
     #modifier of .headers method=
-    'match': '(method)\\s*=(MULTIPART|GET|REST|SOAP|POST_BACK|POST)(\\()?(GET,GET|GET,POST|POST,GET|POST,POST)?(\\))?'
+    'match': '(method)\\s*=(MULTIPART|GET|REST|SOAP|POST_BACK|POST)(\\()?(GET|POST)?(,)?(GET|POST)?(\\))?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -61,6 +87,10 @@
         'name': 'entity.name.type.siteini'
       '5':
         'name': 'entity.name.tag.siteini'
+      '6':
+        'name': 'entity.name.type.siteini'
+      '7':
+        'name': 'entity.name.tag.siteini'
   }
   {
     #modifier of other .headers
@@ -71,7 +101,7 @@
   }
   {
     #modifier of .site (with =)
-    'match': '[\\{\\|\\s](compression|subtitlestype|loadcookie|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|(title)?matchfactor|firstday|firstshow|retry|skip|langoverrule|mdbinitype|searchsite|channel-delay|show-delay|index-delay|time-out)\\s*='
+    'match': '[\\{\\|\\s](compression|subtitlestype|loadcookie|episodenumberformat|episodesystem|ratingsystem|url|timezone|maxdays|cultureinfo|charset|(title)?matchfactor|firstday|firstshow|grabengine|retry|skip|langoverrule|mdbinitype|searchsite|channel-delay|show-delay|index-delay|time-out)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -89,13 +119,6 @@
     'captures':
       '1':
         'name': 'entity.name.type.siteini'
-  }
-  {
-    #specials url
-    'match': '\\s*\\{\\s*(url)'
-    'captures':
-      '1':
-        'name': 'entity.name.function.siteini'
   }
   {
     #specials url with urlencode(mdb)
@@ -118,10 +141,21 @@
     }
   {
     # specials within (=param)
-    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|alloc|max|link|timezone)\\s*='
+    'match': '[\\s+\\(](separator|span|step|count|pattern|target|tags|timespan|max|link|timezone)\\s*='
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
+  }
+  {
+    # specials alloc
+    'match': '[\\s+\\(](alloc)\\s*=(site_id|xmltv_id|display_name),(site_id|xmltv_id|display_name)'
+    'captures':
+      '1':
+        'name': 'entity.name.tag.siteini'
+      '2':
+        'name': 'storage.type.siteini'
+      '3':
+        'name': 'storage.type.siteini'
   }
   {
     # specials removeduplicates
@@ -188,7 +222,8 @@
   }
   {
     # include/exlcude="aaaa""bbbb""cccc",ect
-    'match': '(include|exclude)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    #'match': '(include|exclude)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+     'match': '(include|exclude)\\s*=\\s*\"(.+?)\"(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -220,7 +255,10 @@
   }
   {
     # (include/exlcude)block="aaaa""bbbb""cccc",ect
-    'match': '(includeblock|excludeblock)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    # highlight quotes and string
+    #'match': '(includeblock|excludeblock)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    # highlight string only
+     'match': '(includeblock|excludeblock)\\s*=\\s*\"(.+?)\"(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -289,19 +327,10 @@
         'name': 'entity.name.tag.siteini'
   }
   {
-    # debug as argument
+    # debug
     'match': '(debug)'
     'captures':
       '1':
-        'name': 'entity.name.tag.siteini'
-  }
-  {
-    # debug alone
-    'match': '.(modify)\\s*\\{\\s*(?:\\(?\\s*(debug)\\s*\\)?)\\s*\\}'
-    'captures':
-      '1':
-        'name': 'entity.name.type.siteini'
-      '2':
         'name': 'entity.name.tag.siteini'
   }
   {
@@ -313,7 +342,7 @@
       }
       {
       # else ***space required after(not optional)
-      'match': '^\\s*(else)\\s+\\('
+      'match': '^\\s*(else)\\s+'
       'captures':
         '1':
           'name': 'entity.name.tag.siteini'
