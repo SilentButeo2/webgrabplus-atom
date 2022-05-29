@@ -222,7 +222,8 @@
   }
   {
     # include/exlcude="aaaa""bbbb""cccc",ect
-    'match': '(include|exclude)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    #'match': '(include|exclude)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+     'match': '(include|exclude)\\s*=\\s*\"(.+?)\"(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
@@ -254,7 +255,10 @@
   }
   {
     # (include/exlcude)block="aaaa""bbbb""cccc",ect
-    'match': '(includeblock|excludeblock)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    # highlight quotes and string
+    #'match': '(includeblock|excludeblock)\\s*=\\s*(\".+?\")(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?(\".+?\")?'
+    # highlight string only
+     'match': '(includeblock|excludeblock)\\s*=\\s*\"(.+?)\"(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?(?:\"(.+?)\")?'
     'captures':
       '1':
         'name': 'entity.name.tag.siteini'
