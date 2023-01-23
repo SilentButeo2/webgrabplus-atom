@@ -288,7 +288,7 @@
       '3':
         'name': 'entity.name.type.siteini'
       '4':
-        'name': 'entity.name.type.siteinitag.siteini'
+        'name': 'entity.name.type.tag.siteini'
   }
   {
     # pattern(episodesystem)=
