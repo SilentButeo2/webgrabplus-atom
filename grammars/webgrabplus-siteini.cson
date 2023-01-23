@@ -43,14 +43,14 @@
   }
   {
     #elements
-    'match': '^\\s*(site|url_index|index_url(show|subdetail)|urldate|subpage(_mdb_p[1-9])?|url(show|subdetail)|url_primarysearch|url_mdb(_p[1-9])?|start|stop|duration|(mdb_)?title(original)?|(previous_)?(index_)?temp_[1-9]|sort_by|index_showsplit|index_date|(previous_)?index_start|(previous_)?index_stop|(previous_)?index_duration|index_title(original)?|(index|mdb)_variable_element|index_site_channel|index_site_id|detail_url(show|subdetail)|detail_(start|stop|duration)|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitles?|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(_id|numlist|titlelist|absolute)?|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_(id|channel)|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))'
+    'match': '^\\s*(site|url_index|index_url(show|subdetail)|urldate|subpage(_mdb_p[1-9])?|url(show|subdetail)|url_primarysearch|url_mdb(_p[1-9])?|start|stop|duration|(mdb_)?title(original)?|(previous_)?(index_)?temp_[1-9]|sort_by|index_showsplit|index_date|(previous_)?index_start|(previous_)?index_stop|(previous_)?index_duration|index_title(original)?|(index|mdb)_variable_element|index_site_channel|index_site_id|detail_url(show|subdetail)|detail_(start|stop|duration)|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitles?|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(_id|numlist|titlelist|absolute)?|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_(id|channel)|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|site_(episodesystem|subtitlestype|ratingsystem)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))'
     'captures':
       '1':
         'name': 'storage.type.siteini'
   }
   {
     #elements (in quotes)
-    'match': '([\'\"](url_index|index_url(show|subdetail)|urldate(_formatted)?|subpage(_formatted)?|url(show|subdetail)|url_primarysearch|url_mdb(_p[1-9])?|start|stop|duration|(mdb_)?title(original)?|(previous_)?(index_)?temp_[1-9]|sort_by|index_showsplit|index_date|(previous_)?index_start|(previous_)?index_stop|(previous_)?index_duration|index_title(original)?|(index|mdb)_variable_element|index_site_channel|index_site_id|detail_url(show|subdetail)|detail_(start|stop|duration)|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitles?|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(_id|numlist|titlelist|absolute)?|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_(id|channel)|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))[\'\"])'
+    'match': '([\'\"](url_index|index_url(show|subdetail)|urldate(_formatted)?|subpage(_formatted)?|url(show|subdetail)|url_primarysearch|url_mdb(_p[1-9])?|start|stop|duration|(mdb_)?title(original)?|(previous_)?(index_)?temp_[1-9]|sort_by|index_showsplit|index_date|(previous_)?index_start|(previous_)?index_stop|(previous_)?index_duration|index_title(original)?|(index|mdb)_variable_element|index_site_channel|index_site_id|detail_url(show|subdetail)|detail_(start|stop|duration)|(index_|detail_|subdetail_|mdb_)?(title(original)?|subtitles?|description|director|actor|presenter|writer|producer|composer|commentator|rating(icon)?|category|productiondate|country|starrating(votes)?|episode(_id|numlist|titlelist|absolute)?|premiere|previousshown|videoaspect|videoquality|showicon|urlchannellogo)|previous_start|previous_stop|previous_duration|channel|urldate|now|showdate|config_(site_(id|channel)|xmltv_id|display_name|timespan_days|credentials_user|credentials_password)|site_(episodesystem|subtitlestype|ratingsystem)|global_temp_[1-9]|(previous_)?(index_|detail_|subdetail_|mdb_)?temp_[1-9]|mdb_(show_id|plot|commentsummary|review)|x_((sub)?title|productiondate|actor|director))[\'\"])'
     'captures':
       '2':
         'name': 'storage.type.siteini'
@@ -288,7 +288,7 @@
       '3':
         'name': 'entity.name.type.siteini'
       '4':
-        'name': 'entity.name.type.tag.siteini'
+        'name': 'entity.name.type.siteinitag.siteini'
   }
   {
     # pattern(episodesystem)=
